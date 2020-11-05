@@ -21,6 +21,10 @@
             "description": "Initial Admin password",
             "value": "change_me"
         },
+        "KEYCLOAK_FRONTEND_URL": {
+            "description": "TODO",
+            "value": "https://keycloak-heroku-free.herokuapp.com/auth/"
+        },
         "PROXY_ADDRESS_FORWARDING": {
             "description": "Set to true since we will be running behind Heroku's load balancers",
             "value": "true"

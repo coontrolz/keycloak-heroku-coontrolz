@@ -1,5 +1,6 @@
 {
   "KEYCLOAK_PASSWORD": "admin",
   "KEYCLOAK_USER": "admin",
+  "KEYCLOAK_FRONTEND_URL": "https://keycloak-heroku-free.herokuapp.com/auth/",
   "PROXY_ADDRESS_FORWARDING": "true"
 }
