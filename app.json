@@ -19,11 +19,11 @@
         },
         "KEYCLOAK_PASSWORD": {
             "description": "Initial Admin password",
-            "value": "change_me"
+            "value": "7y6t5r4e3w2Q."
         },
         "KEYCLOAK_FRONTEND_URL": {
             "description": "TODO",
-            "value": "https://keycloak-heroku-free.herokuapp.com/auth/"
+            "value": "https://keycloak-coontrolz.herokuapp.com/auth/"
         },
         "PROXY_ADDRESS_FORWARDING": {
             "description": "Set to true since we will be running behind Heroku's load balancers",
@@ -38,7 +38,7 @@
     },
     "addons": [
         {
-            "plan": "heroku-postgresql:hobby-dev"
+            "plan": "heroku-postgresql:eco-dev"
         }
     ]
 }
