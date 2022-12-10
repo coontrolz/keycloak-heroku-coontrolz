@@ -9,7 +9,7 @@
         "heroku"
     ],
     "stack": "container",
-    "repository": "https://github.com/dpikalov/keycloak-heroku-free",
+    "repository": "https://github.com/melihsunbul/keycloak-heroku-coontrolz/",
     "logo": "https://www.keycloak.org/resources/images/keycloak_logo_480x108.png",
     "success_url": "/",
     "env": {
