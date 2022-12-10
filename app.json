@@ -38,7 +38,7 @@
     },
     "addons": [
         {
-            "plan": "heroku-postgresql:mini-dev"
+            "plan": "heroku-postgresql:mini"
         }
     ]
 }
