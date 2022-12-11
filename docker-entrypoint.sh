@@ -99,6 +99,8 @@ if echo "$@" | egrep -v -- '-c |-c=|--server-config |--server-config='; then
     SYS_PROPS+=" -c=standalone-ha.xml"
 fi
 
+SYS_PROPS+=" -Dkeycloak.profile.feature.declarative_user_profile=enabled"
+
 ############
 # DB setup #
 ############
