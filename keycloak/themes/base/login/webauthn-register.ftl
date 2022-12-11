@@ -14,9 +14,7 @@
                 <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId"/>
                 <input type="hidden" id="authenticatorLabel" name="authenticatorLabel"/>
                 <input type="hidden" id="error" name="error"/>
-            </div>
-            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('type',properties.kcFormGroupErrorClass!)}">">
-                  <div class="${properties.kcLabelWrapperClass!}">
+                 <div class="${properties.kcLabelWrapperClass!}">
                     <label for="user.attributes.type" class="${properties.kcLabelClass!}">${msg("type")}</label>
                   </div>
                     <div class="${properties.kcInputWrapperClass!}">
@@ -37,7 +35,6 @@
                         />
                         <label for="user.attributes.type">Seller</label><br>
                       </div>
-
             </div>
         </form>
 
