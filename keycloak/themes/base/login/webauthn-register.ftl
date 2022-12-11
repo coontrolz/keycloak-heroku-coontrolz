@@ -16,29 +16,6 @@
                 <input type="hidden" id="authenticatorLabel" name="authenticatorLabel"/>
                 <input type="hidden" id="error" name="error"/>
             </div>
-            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('type',properties.kcFormGroupErrorClass!)}">
-                  <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="user.attributes.type" class="${properties.kcLabelClass!}">${msg("type")}</label>
-                  </div>
-                    <div class="${properties.kcInputWrapperClass!}">
-                        <input
-                          type="radio"
-                          id="user.attributes.type"
-                          name="user.attributes.type"
-                          value="buyer"
-                        />
-                        <label for="user.attributes.type">Buyer</label><br>
-                   </div>
-                     <div class="${properties.kcInputWrapperClass!}">
-                        <input
-                          type="radio"
-                          id="user.attributes.type"
-                          name="user.attributes.type"
-                          value="seller"
-                        />
-                        <label for="user.attributes.type">Seller</label><br>
-                    </div>
-            </div>
         </form>
         
 
