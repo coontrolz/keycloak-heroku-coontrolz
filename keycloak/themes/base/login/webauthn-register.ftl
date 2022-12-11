@@ -6,15 +6,9 @@
         <span class="${properties.kcWebAuthnKeyIcon}"></span>
         ${kcSanitize(msg("webauthn-registration-title"))?no_esc}
     <#elseif section = "form">
-
-        <form id="register" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
-            <div class="${properties.kcFormGroupClass!}">
-                <input type="hidden" id="clientDataJSON" name="clientDataJSON"/>
-                <input type="hidden" id="attestationObject" name="attestationObject"/>
-                <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId"/>
-                <input type="hidden" id="authenticatorLabel" name="authenticatorLabel"/>
-                <input type="hidden" id="error" name="error"/>
-                 <div class="${properties.kcLabelWrapperClass!}">
+    
+            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('type',properties.kcFormGroupErrorClass!)}">">
+                  <div class="${properties.kcLabelWrapperClass!}">
                     <label for="user.attributes.type" class="${properties.kcLabelClass!}">${msg("type")}</label>
                   </div>
                     <div class="${properties.kcInputWrapperClass!}">
@@ -35,8 +29,20 @@
                         />
                         <label for="user.attributes.type">Seller</label><br>
                       </div>
+
+            </div>
+
+        <form id="register" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
+            <div class="${properties.kcFormGroupClass!}">
+                <input type="hidden" id="clientDataJSON" name="clientDataJSON"/>
+                <input type="hidden" id="attestationObject" name="attestationObject"/>
+                <input type="hidden" id="publicKeyCredentialId" name="publicKeyCredentialId"/>
+                <input type="hidden" id="authenticatorLabel" name="authenticatorLabel"/>
+                <input type="hidden" id="error" name="error"/>
             </div>
         </form>
+        
+
 
         <script type="text/javascript" src="${url.resourcesCommonPath}/node_modules/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="${url.resourcesPath}/js/base64url.js"></script>
