@@ -77,19 +77,6 @@
 
             </div>
 
-            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('type',properties.kcFormGroupErrorClass!)}">
-
-                <div class="mdc-text-field mdc-text-field--with-leading-icon ${properties.kcLabelClass!} <#if usernameEditDisabled??>mdc-text-field--disabled</#if>">
-                    <i class="material-icons mdc-text-field__icon" role="button">person</i>
-                    <input tabindex="0" required id="type" class="mdc-text-field__input ${properties.kcInputClass!}" name="type" value="${(register.formData.type!'')}" type="text" autofocus autocomplete="off">
-                    <div class="mdc-line-ripple"></div>
-                    <label for="type" class="mdc-floating-label ${properties.kcLabelClass!}">
-                        ${msg("type")}
-                    </label>
-                </div>
-
-            </div>
-
             <#--
             <#if !realm.registrationEmailAsUsername>
                 <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('username',properties.kcFormGroupErrorClass!)}">
@@ -128,7 +115,6 @@
                         <input type="password" id="password" class="${properties.kcInputClass!}" name="password" autocomplete="new-password"/>
                     </div>
                 </div>
-
                 <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('password-confirm',properties.kcFormGroupErrorClass!)}">
                     <div class="${properties.kcLabelWrapperClass!}">
                         <label for="password-confirm" class="${properties.kcLabelClass!}">${msg("passwordConfirm")}</label>
@@ -179,7 +165,6 @@
                         <span><a href="${url.loginUrl}">${kcSanitize(msg("backToLogin"))?no_esc}</a></span>
                     </div>
                 </div>
-
                 <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
                     <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doRegister")}"/>
                 </div>
