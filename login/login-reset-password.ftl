@@ -1,53 +1,46 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayInfo=true; section>
-    <#if section = "title">
-        ${msg("emailForgotTitle")?no_esc}
-    <#elseif section = "header">
-        ${msg("emailForgotTitle")?no_esc}
+    <#if section = "header">
+        ${msg("emailForgotTitle")}
     <#elseif section = "form">
-        <form id="kc-reset-password-form" class="form reset-password ${properties.kcFormClass!}" action="${url.loginAction}" method="post">
-            <div class="reset-password-field ${properties.kcFormGroupClass!}">
-
-                <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!} <#if usernameEditDisabled??>mdc-text-field--disabled</#if>">
-                    <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">person</i>
-                    <input required id="username" class="mdc-text-field__input ${properties.kcInputClass!}" name="username" type="text" autofocus>
-                    <div class="${properties.kcLabelWrapperClass!}">
-                        <label for="username" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("username")?no_esc}</label>
-                    </div>
-                    <div class="mdc-notched-outline">
-                        <svg>
-                            <path class="mdc-notched-outline__path"/>
-                        </svg>
-                    </div>
-                    <div class="mdc-notched-outline__idle"></div>
-                </div>
-
-            </div>
-
-            <div class="${properties.kcFormGroupClass!}">
-                <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
-                    <div class="${properties.kcFormOptionsWrapperClass!}">
-                        <span>
-                            <#--  <a class="btn btn-default btn-flat btn-block" href="${url.loginUrl}"><i class="fa fa-caret-left"></i>&nbsp;&nbsp;${msg("backToLogin")}</a>  -->
-                            <button class="mdc-button" onclick="window.location.href = ${url.loginUrl}" formnovalidate>
-                                <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_back</i>
-                                ${msg("backToLogin")?no_esc}
-                            </button>
-                        </span>
-                    </div>
-                </div>
-
-                <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
-                    <#--  <input class="btn btn-primary btn-flat btn-block ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}"/>  -->
-                    <button class="mdc-button mdc-button--raised ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit">
-                        ${msg("doSubmit")?no_esc}
-                    </button>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </form>
-    <#elseif section = "info" >
-        <hr />
-        ${msg("emailInstruction")?no_esc}
-    </#if>
+    <ul id="nav" class="nav justify-content-center">
+      <li class="nav-item">
+        <a href="" class="nav-link nuxt-link-active">
+          <span>${msg("forgotPassword")}</span>
+        </a>
+      </li>
+    </ul>
+    <div class="divider"></div>
+    <div class="kcform">
+      <h1 id="kc-page-title">
+        ${msg("forgotPassword")}
+      </h1>
+      <form action="${url.loginAction}" method="post">
+          <div class="${properties.kcFormGroupClass!}">
+              <div class="${properties.kcLabelWrapperClass!}">
+                  <label for="username">${msg("email")}</label>
+              </div>
+              <div class="${properties.kcInputWrapperClass!}">
+                  <#if auth?has_content && auth.showUsername()>
+                      <input type="email" id="username" name="username" class="${properties.kcInputClass!}" autofocus value="${auth.attemptedUsername}" required/>
+                  <#else>
+                      <input type="email" id="username" name="username" class="${properties.kcInputClass!}" autofocus required/>
+                  </#if>
+              </div>
+          </div>
+          <div class="${properties.kcFormGroupClass!}">
+             <div class="${properties.kcInputWrapperClass!}">
+                  <div class="form-buttons">
+                        <div class="flex-grow-1">
+                          <a href="${url.loginUrl}" class="btn btn-outline-primary text-decoration-none" role="button">${kcSanitize(msg("doCancel"))?no_esc}</a>                         
+                        </div>
+                        <div class="flex">
+                           <input class="btn btn-primary" name="login" type="submit" value="${msg("resetPassword")}"/>
+                        </div>
+                  </div>
+              </div>
+         </div>
+      </form>
+   </div>
+  </#if>
 </@layout.registrationLayout>

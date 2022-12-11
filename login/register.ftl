@@ -1,146 +1,91 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout; section>
-    <#if section = "title">
-        ${msg("registerWithTitle",(realm.displayName!''))?no_esc}
-    <#elseif section = "header">
-        ${msg("registerWithTitleHtml",(realm.displayNameHtml!''))?no_esc}
-    <#elseif section = "form">
-        <form id="kc-register-form" class="register form ${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
-          <input type="text" readonly value="this is not a login form" style="display: none;">
-          <input type="password" readonly value="this is not a login form" style="display: none;">
-
-          <#if !realm.registrationEmailAsUsername>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">person</i>
-                <input id="username" class="mdc-text-field__input ${properties.kcInputClass!}" name="username" type="text" autofocus value="${(register.formData.username!'')}">
+  <#if section = "header">
+     ${msg("registerTitle")}
+  <#elseif section = "form">
+   <ul id="nav" class="nav justify-content-center">
+         <li class="nav-item">
+            <a href="${url.loginUrl}" target="_self" class="nav-link">
+               <span>${msg("doLogIn")}</span>
+            </a>
+         </li>
+         <li class="nav-item">
+            <a href="${url.registrationUrl}" class="nav-link nuxt-link-active">
+               <span>${msg("signup")}</span>
+            </a>
+         </li>
+      </ul>
+   <div class="divider"></div>
+   <div class="kcform">
+        <h1 id="kc-page-title">
+          ${msg("signup")}
+        </h1>
+        <div class="instruction">
+          <p>
+            ${msg("accountSignup")}
+          </p>
+          <p>${msg("accountSignupHelpLink")?no_esc}</p>
+        </div>
+        <form action="${url.registrationAction}" method="post">
+            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('email',properties.kcFormGroupErrorClass!)}">
                 <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="username" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("username")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-          </#if>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">person</i>
-                <input required id="firstName" class="mdc-text-field__input ${properties.kcInputClass!}" name="firstName" type="text" autofocus value="${(register.formData.firstName!'')}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="firstName" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("firstName")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">person</i>
-                <input required id="lastName" class="mdc-text-field__input ${properties.kcInputClass!}" name="lastName" type="text" value="${(register.formData.lastName!'')}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="lastName" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("lastName")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">email</i>
-                <input required id="email" class="mdc-text-field__input ${properties.kcInputClass!}" name="email" type="text" value="${(register.formData.email!'')}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="email" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("email")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-            <#if passwordRequired>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">lock</i>
-                <input required id="password" class="mdc-text-field__input ${properties.kcInputClass!}" name="password" type="password">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="password" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("password")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-            <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon ${properties.kcLabelClass!}">
-                <i class="material-icons mdc-text-field__icon" tabindex="-1" role="button">lock</i>
-                <input required id="password-confirm" class="mdc-text-field__input ${properties.kcInputClass!}" name="password-confirm" type="password">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="password-confirm" class="mdc-floating-label ${properties.kcLabelClass!}">${msg("passwordConfirm")?no_esc}</label>
-                </div>
-                <div class="mdc-notched-outline">
-                    <svg>
-                        <path class="mdc-notched-outline__path"/>
-                    </svg>
-                </div>
-                <div class="mdc-notched-outline__idle"></div>
-            </div>
-
-            <#--  <div class="register-field ${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('password-confirm',properties.kcFormGroupErrorClass!)}">
-                <div class="${properties.kcLabelWrapperClass!}">
-                    <label for="password-confirm" class="${properties.kcLabelClass!}">${msg("passwordConfirm")} *</label>
+                    <label for="email">${msg("email")}</label>
                 </div>
                 <div class="${properties.kcInputWrapperClass!}">
-                    <input type="password" id="password-confirm" class="form-control ${properties.kcInputClass!}" name="password-confirm" />
-
-                    <div id="capsLockWarning2" style="font-weight: bold; color: maroon; margin: 0 0 10px 0; display: none;">
-                        <i class="fa fa-exclamation-triangle" style="color: #f0ad4e"></i>
-                        ${msg("capsLockWarning")}
-                    </div>
+                    <input type="email" id="email" class="${properties.kcInputClass!}" name="email" value="${(register.formData.email!'')}" autocomplete="email" required/>
+                    <small class="xs text-muted px-2">${msg("req")}</small>
                 </div>
-            </div>  -->
-            </#if>
+            </div>
 
-            <#if recaptchaRequired??>
-            <div class="form-group">
+            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('username',properties.kcFormGroupErrorClass!)}">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="username">${msg("usernameText")}</label>
+                </div>
                 <div class="${properties.kcInputWrapperClass!}">
-                    <div class="g-recaptcha" data-size="compact" data-sitekey="${recaptchaSiteKey}"></div>
+                    <input type="text" id="username" class="${properties.kcInputClass!}" name="username" value="${(register.formData.username!'')}" autocomplete="username" pattern="[a-zA-Z][a-zA-Z0-9-_.]{1,14}" title="${msg("usernameValid")}" required/>
+                    <small class="xs text-muted px-2">${msg("req")} - ${msg("usernameDesc")}</small>
+                </div>
+            </div>
+
+            <#if passwordRequired??>
+            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('password',properties.kcFormGroupErrorClass!)}">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="password">${msg("passwordText")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="password" id="password" pattern=".{8,}"  class="${properties.kcInputClass!}" name="password" autocomplete="new-password" required/>
+                    <small class="xs text-muted px-2">${msg("passwordDesc")}</small>
+                 </div>
+            </div>
+
+            <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('password-confirm',properties.kcFormGroupErrorClass!)}">
+                <div class="${properties.kcLabelWrapperClass!}">
+                    <label for="password-confirm">${msg("passwordConfirm")}</label>
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="password" id="password-confirm" class="${properties.kcInputClass!}" name="password-confirm" autocomplete="new-password" required/>
                 </div>
             </div>
             </#if>
-
-            <div class="${properties.kcFormGroupClass!} register-button-container">
-
-                <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
-                    <div class="${properties.kcFormOptionsWrapperClass!}">
-                        <span>
-                            <button class="mdc-button" onclick="window.location.href = ${url.loginUrl}" formnovalidate>
-                                <i class="material-icons mdc-button__icon" aria-hidden="true">arrow_back</i>
-                                ${msg("backToLogin")?no_esc}
-                            </button>
-                        </span>
-                    </div>
-                </div>
-
-                <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
-                    <button class="mdc-button mdc-button--raised ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonLargeClass!}" type="submit">
-                        ${msg("doRegister")?no_esc}
-                    </button>
-                </div>
+            <div class="${properties.kcFormGroupClass!} form-group-consent">
+              <div class="form-check">
+                <input type="checkbox" required class="form-check-input" id="user.attributes.ageconfirm" name="user.attributes.ageconfirm"/>
+                <label for="user.attributes.ageconfirm" class="form-check-label">${msg("ageconfirm")?no_esc}</label>
+              </div>
+              <div class="form-check">
+                <input type="checkbox" required class="form-check-input" id="user.attributes.terms" name="user.attributes.terms"/>
+                  <label for="user.attributes.terms" class="form-check-label">${msg("terms")?no_esc}</label>
+              </div>
             </div>
-        </form>
-    </#if>
+
+         <div class="${properties.kcFormGroupClass!}">
+           <div class="${properties.kcInputWrapperClass!}">
+             <div class="form-buttons flex-row-reverse">
+               <input class="btn btn-primary" type="submit" value="${msg("signup")}"/>
+             </div>
+           </div>
+        </div>
+     </form>
+    </div>
+   </#if>
 </@layout.registrationLayout>
