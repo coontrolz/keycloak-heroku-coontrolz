@@ -1,46 +1,34 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayInfo=true; section>
     <#if section = "header">
+        ${msg("doTitle")}
+    <#elseif section = "subheader">
         ${msg("emailForgotTitle")}
     <#elseif section = "form">
-    <ul id="nav" class="nav justify-content-center">
-      <li class="nav-item">
-        <a href="" class="nav-link nuxt-link-active">
-          <span>${msg("forgotPassword")}</span>
-        </a>
-      </li>
-    </ul>
-    <div class="divider"></div>
-    <div class="kcform">
-      <h1 id="kc-page-title">
-        ${msg("forgotPassword")}
-      </h1>
-      <form action="${url.loginAction}" method="post">
-          <div class="${properties.kcFormGroupClass!}">
-              <div class="${properties.kcLabelWrapperClass!}">
-                  <label for="username">${msg("email")}</label>
-              </div>
-              <div class="${properties.kcInputWrapperClass!}">
-                  <#if auth?has_content && auth.showUsername()>
-                      <input type="email" id="username" name="username" class="${properties.kcInputClass!}" autofocus value="${auth.attemptedUsername}" required/>
-                  <#else>
-                      <input type="email" id="username" name="username" class="${properties.kcInputClass!}" autofocus required/>
-                  </#if>
-              </div>
-          </div>
-          <div class="${properties.kcFormGroupClass!}">
-             <div class="${properties.kcInputWrapperClass!}">
-                  <div class="form-buttons">
-                        <div class="flex-grow-1">
-                          <a href="${url.loginUrl}" class="btn btn-outline-primary text-decoration-none" role="button">${kcSanitize(msg("doCancel"))?no_esc}</a>                         
-                        </div>
-                        <div class="flex">
-                           <input class="btn btn-primary" name="login" type="submit" value="${msg("resetPassword")}"/>
-                        </div>
-                  </div>
-              </div>
-         </div>
-      </form>
-   </div>
-  </#if>
+        <form id="kc-reset-password-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
+            <div class="${properties.kcFormGroupClass!}">
+                <div class="${properties.kcLabelWrapperClass!}">
+
+                </div>
+                <div class="${properties.kcInputWrapperClass!}">
+                    <input type="text" id="username" placeholder="${msg("username")}" placeholder= name="username" class="${properties.kcInputClass!}" autofocus/>
+                      <img src=" ${url.resourcesPath}/icon/email.png"  class=${properties.EmailIconClasss!}  />
+                </div>
+            </div>
+
+            <div class="${properties.kcFormGroupClass!} ${properties.kcFormSettingClass!}">
+                <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
+                    <div class="${properties.kcFormOptionsWrapperClass!}">
+                        <span><a href="${url.loginUrl}">${kcSanitize(msg("backToLogin"))?no_esc}</a></span>
+                    </div>
+                </div>
+
+                <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
+                    <input class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}"/>
+                </div>
+            </div>
+        </form>
+    <#elseif section = "info" >
+        ${msg("emailInstruction")}
+    </#if>
 </@layout.registrationLayout>
