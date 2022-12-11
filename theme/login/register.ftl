@@ -78,30 +78,17 @@
             </div>
 
             <div class="${properties.kcFormGroupClass!} ${messagesPerField.printIfExists('type',properties.kcFormGroupErrorClass!)}">
-                    <div class="${properties.kcLabelWrapperClass!}">
-                        <label for="user.attributes.type" class="${properties.kcLabelClass!}">${msg("type")}</label>
-                    </div>
-                    <div class="${properties.kcInputWrapperClass!}">
-                        <input
-                            type="radio"
-                            id="user.attributes.type"
-                            name="user.attributes.type"
-                            class="${properties.kcInputClass!}"
-                            value="buyer"
-                        />
-                        <label for="user.attributes.type">Buyer</label><br>
-                    </div>
-                    <div class="${properties.kcInputWrapperClass!}">
-                        <input
-                            type="radio"
-                            id="user.attributes.type"
-                            name="user.attributes.type"
-                            class="${properties.kcInputClass!}"
-                            value="seller"
-                        />
-                        <label for="user.attributes.type">Seller</label><br>
-                    </div>
-            </div> 
+
+                <div class="mdc-text-field mdc-text-field--with-leading-icon ${properties.kcLabelClass!} <#if usernameEditDisabled??>mdc-text-field--disabled</#if>">
+                    <i class="material-icons mdc-text-field__icon" role="button">person</i>
+                    <input tabindex="0" required id="type" class="mdc-text-field__input ${properties.kcInputClass!}" name="type" value="${(register.formData.type!'')}" type="text" autofocus autocomplete="off">
+                    <div class="mdc-line-ripple"></div>
+                    <label for="type" class="mdc-floating-label ${properties.kcLabelClass!}">
+                        ${msg("type")}
+                    </label>
+                </div>
+
+            </div>
 
             <#--
             <#if !realm.registrationEmailAsUsername>
